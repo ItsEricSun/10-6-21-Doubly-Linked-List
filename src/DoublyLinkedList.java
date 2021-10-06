@@ -10,7 +10,7 @@ class DoublyLinkedList<E> {
 			data = d; 
 		}
 	}
-
+// https://www.geeksforgeeks.org/java-implementing-iterator-and-iterable-interface/
 	public DoublyLinkedList<E> add(DoublyLinkedList<E> list, E data){
 		Node<E> new_node = new Node<E>(data);
 		new_node.next = null;
