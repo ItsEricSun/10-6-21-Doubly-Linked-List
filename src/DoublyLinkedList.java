@@ -16,31 +16,64 @@ class DoublyLinkedList<E> {
         }
     }
     
-    public DoublyLinkedList add(DoublyLinkedList list, E data){
-        // Create a new node with given data
-        Node new_node = new Node(data);
+    public DoublyLinkedList<E> add(DoublyLinkedList<E> list, E data){
+        Node<E> new_node = new Node<E>(data);
         new_node.next = null;
         new_node.prev = null;
-  
-        // If the Linked List is empty,
-        // then make the new node as head
         if (list.head == null) {
             list.head = new_node;
             list.tail = new_node;
         }
         else {
-            // Else traverse till the last node
-            // and insert the new_node there
-            Node last = list.head;
-            while (last.next != null) {
-                last = last.next;
-            }
-  
-            // Insert the new_node at last node
+            Node<E> last = list.tail;
+            new_node.prev = last;
             last.next = new_node;
+            list.tail = new_node;
         }
-  
-        // Return the list by head
+        return list;
+    }
+    
+    public DoublyLinkedList<E> insert(DoublyLinkedList<E> list, E data, int index){
+    	if(index < 0 || index > list.size(list)) {
+    		System.out.print("\nIndex Out of Bounds");
+    		return list;
+    	}
+    	Node<E> new_node = new Node<E>(data);
+    	if(index == 0) {
+    		Node<E> first = list.head;
+    		first.prev = new_node;
+    		new_node.next = first;
+    		list.head = new_node;
+    		return list;
+    	}
+    	if(index == list.size(list)) {
+    		Node<E> last = list.tail;
+    		last.next = new_node;
+    		new_node.prev = last;
+    		list.tail = new_node;
+    		return list;
+    	}
+    	Node<E> curr = list.head;
+    	for(int i = 1; i <= index; i++) {
+    		curr = curr.next;
+    	}
+    	new_node.next = curr;
+    	new_node.prev = curr.prev;
+    	curr.prev.next = new_node;
+    	curr.prev = curr.prev.next;
+    	
+//        new_node.next = null;
+//        new_node.prev = null;
+//        if (list.head == null) {
+//            list.head = new_node;
+//            list.tail = new_node;
+//        }
+//        else {
+//            Node<E> last = list.tail;
+//            new_node.prev = last;
+//            last.next = new_node;
+//            list.tail = new_node;
+//        }
         return list;
     }
 //    
@@ -66,10 +99,10 @@ class DoublyLinkedList<E> {
 //    	return list;
 //    }
 //    
-    public void printList(DoublyLinkedList list){
-        Node currNode = list.head;
+    public void printList(DoublyLinkedList<E> list){
+        Node<E> currNode = list.head;
    
-        System.out.print("\nForwardsLinkedList: ");
+        System.out.print("\nForwards: ");
    
         // Traverse through the LinkedList
         while (currNode != null) {
@@ -82,7 +115,7 @@ class DoublyLinkedList<E> {
         
         currNode = list.tail;
         
-        System.out.print("\nBackwardsLinkedList: ");
+        System.out.print(" Backwards: ");
    
         // Traverse through the LinkedList
         while (currNode != null) {
@@ -94,26 +127,33 @@ class DoublyLinkedList<E> {
         }
         
     }
-//    
-//    public int size(LinkedList list){
-//        Node currNode = list.head;
-//        int i = 0;
-//        while (currNode != null) {
-//            currNode = currNode.next;
-//            i++;
-//        }
-//        System.out.print("\nSize: " + i);
-//        return i;
-//    }
+    
+    public int size(DoublyLinkedList<E> list){
+        Node<E> currNode = list.head;
+        int i = 0;
+        while (currNode != null) {
+            currNode = currNode.next;
+            i++;
+        }
+        return i;
+    }
     
     public static void main(String[] args) {
 		DoublyLinkedList<String> l = new DoublyLinkedList<>();
 		l.add(l, "A");
-//		l.add(l, "D");
+		l.printList(l);
+		l.add(l, "B");
+		l.printList(l);
+		l.insert(l, "C", 1);
+		l.printList(l);
+		l.insert(l, "D", 3);
+		l.printList(l);
+		l.insert(l, "E", 2);
+		l.printList(l);
 //		l.add(l, "C");
 //		l.add(l, "B");
 		l.printList(l);
-//		l.size(l);
+		System.out.print("\nSize: " + l.size(l));
 //		l.remove(l, 1);
 //
 //		l.printList(l);
