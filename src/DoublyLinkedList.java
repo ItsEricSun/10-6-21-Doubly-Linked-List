@@ -110,7 +110,7 @@ class DoublyLinkedList<E> {
 
 	public static void main(String[] args) {
 		DoublyLinkedList<String> l = new DoublyLinkedList<>();
-		l.add(l, "F");
+		l.add(l, "A");
 		l.add(l, "B");
 		l.add(l, "C");
 		l.add(l, "D");
