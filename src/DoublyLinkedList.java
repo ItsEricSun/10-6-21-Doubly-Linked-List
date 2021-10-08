@@ -1,6 +1,9 @@
-class DoublyLinkedList<E> {
-	Node<E> head; 
-	Node<E> tail;
+import java.util.Iterator;
+import java.util.ListIterator;
+import java.util.NoSuchElementException;
+
+class DoublyLinkedList<E> implements Iterable<E>{
+	Node<E> head, tail;
 
 	class Node<E> {
 		E data;
@@ -120,5 +123,78 @@ class DoublyLinkedList<E> {
 		l.remove(l, 3);
 		l.printList(l);
 		System.out.print("\nSize: " + l.size(l));
+	}
+
+	public Iterator<E> iterator() {
+		return new Iterator<E>();
+	}
+	
+	class Iterator<E> implements ListIterator<E> {
+		DoublyLinkedList<E>.Node<E> cur;
+		
+		Iterator() {
+			cur = (DoublyLinkedList<E>.Node<E>) head;
+		}
+		
+		public boolean hasNext() {
+			return cur != null;
+		}
+
+		public E next() {
+			if(cur == null) {
+				throw new NoSuchElementException();
+			}
+			E data = cur.data;
+			cur = cur.next;
+			return data;
+		}
+
+		public boolean hasPrevious() {
+			return cur != null;
+		}
+
+		@Override
+		public E previous() {
+			if(cur == null) {
+				throw new NoSuchElementException();
+			}
+			E data = cur.data;
+			cur = cur.prev;
+			return data;
+		}
+
+		@Override
+		public void remove() {
+			// TODO Auto-generated method stub
+			if(cur == null) {
+				throw new NoSuchElementException();
+			}
+			if(cur == head) { 
+				head = cur.next;
+				cur = cur.next;
+				cur.prev = null;
+			} else if (cur == tail) {
+				tail = cur.prev;
+				cur = cur.prev;
+				cur.next = null;
+			} else {
+				cur.next.prev = cur.prev;
+				cur.prev.next = cur.next;
+				
+			}
+		}
+
+		@Override
+		public void set(E e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void add(E e) {
+			// TODO Auto-generated method stub
+			
+		}
+		
 	}
 }
