@@ -170,11 +170,11 @@ class DoublyLinkedList<E> implements Iterable<E>{
 				throw new NoSuchElementException();
 			}
 			if(cur == head) { 
-				head = cur.next;
+//				head = cur.next;
 				cur = cur.next;
 				cur.prev = null;
 			} else if (cur == tail) {
-				tail = cur.prev;
+//				tail = cur.prev;
 				cur = cur.prev;
 				cur.next = null;
 			} else {
@@ -194,6 +194,18 @@ class DoublyLinkedList<E> implements Iterable<E>{
 		public void add(E e) {
 			// TODO Auto-generated method stub
 			
+		}
+
+		@Override
+		public int nextIndex() {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+
+		@Override
+		public int previousIndex() {
+			// TODO Auto-generated method stub
+			return 0;
 		}
 		
 	}
