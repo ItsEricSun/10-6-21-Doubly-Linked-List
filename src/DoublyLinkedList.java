@@ -13,6 +13,11 @@ public class DoublyLinkedList<E> implements Iterable<E>{
 		Node(E d) { 
 			data = d; 
 		}
+		
+		Node(E d, Node<E> next){
+			data = d;
+			this.next = next;
+		}
 	}
 // https://www.geeksforgeeks.org/java-implementing-iterator-and-iterable-interface/
 	public void add(E data){
@@ -29,6 +34,14 @@ public class DoublyLinkedList<E> implements Iterable<E>{
 			last.next = new_node;
 			tail = new_node;
 		}
+	}
+	
+	public Node<E> getHead() {
+		return head;
+	}
+	
+	public Node<E> getTail() {
+		return tail;
 	}
 
 //	public DoublyLinkedList<E> insert(DoublyLinkedList<E> list, E data, int index){
@@ -111,98 +124,54 @@ public class DoublyLinkedList<E> implements Iterable<E>{
 		return i;
 	}
 
-	public static void main(String[] args) {
-//		mainn();
-		DoublyLinkedList<String> l = new DoublyLinkedList<>();
-		l.add("a");
-		l.add("b");
-		l.add("c");
-		l.add("d");
-		l.printList();
-		ListIterator<String> it = l.iterator();
-		System.out.println("");
-//		it.next();
-//		it.next();
-//		it.next();
-		while(it.hasNext()) {
-			System.out.println(it.next());
-		}
-		while(it.hasPrevious()) {
-			System.out.println(it.previous());
-		}
-
-//		System.out.print("\nSize: " + l.size(l));
-	}
+//	public static void main(String[] args) {
+//		DoublyLinkedList<Employee> l = new DoublyLinkedList<>();
+//		l.add(new Employee("e", "math", 20));
+//		l.add(new Employee("a", "english", 200));
+//		l.add(new Employee("n", "science", 60));
+//		l.printList();
+//		ListIterator<Employee> it = l.iterator();
+//		System.out.println("");
+//		while(it.hasNext()) {
+//			System.out.println(it.next());
+//		}
+//		while(it.hasPrevious()) {
+//			System.out.println(it.previous());
+//		}
+//	}
 
 	public ListIterator<E> iterator() {
 		return new DoublyLinkedListIterator();
 	}
 	
 	private class DoublyLinkedListIterator implements ListIterator<E> {
-		private Node<E> cur = head;
-		private Node<E> lastAccessed = null;
-		
-//		public boolean hasNext() {
-//			return cur != null;
-//		}
-//
-//		public E next() {
-//			if(!hasNext()) {
-//				throw new NoSuchElementException();
-//			}
-//			lastAccessed = cur;
-//			E data = cur.data;
-//			cur = cur.next;
-//			return data;
-//		}
-//
-//		public boolean hasPrevious() {
-//			if(lastAccessed == tail && cur == null) {
-//				return true;
-//			}
-//			return cur.prev != null;
-//		}
-//
-//		@Override
-//		public E previous() {
-//			if(!hasPrevious()) {
-//				throw new NoSuchElementException();
-//			}
-//			if(cur == null) {
-//				cur = tail;
-//			}
-//			lastAccessed = cur;
-//			E data = cur.data;
-//			cur = cur.prev;
-//			return data;
-//		}
+		private Node<E> initial = new Node<E>(null, head);
+		private Node<E> cur = initial;
 		
 		public boolean hasNext() {
-			return cur != null;
+			return cur.next != null;
+		}
+
+		public E next() {
+			if(!hasNext()) {
+				throw new NoSuchElementException();
+			}
+			cur = cur.next;
+			return cur.data;
 		}
 
 		public boolean hasPrevious() {
 			return cur.prev != null;
 		}
 
-		public E next() {
-			if (!hasNext())
-				throw new NoSuchElementException();
-			lastAccessed = cur;
-			E item = cur.data;
-			cur = cur.next; 
-			return item;
-		}
-
+		@Override
 		public E previous() {
-			if (!hasPrevious())
+			if(!hasPrevious()) {
 				throw new NoSuchElementException();
+			}
 			cur = cur.prev;
-			lastAccessed = cur;
 			return cur.data;
 		}
-		
-		
 		
 		@Override
 		public void set(E e) {
