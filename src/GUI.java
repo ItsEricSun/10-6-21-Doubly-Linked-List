@@ -8,6 +8,7 @@ public class GUI extends GBFrame {
 	static JFrame frm;
 	DoublyLinkedList<Employee> employees = new DoublyLinkedList<>();
 	ListIterator<Employee> it = employees.iterator();
+	ListIterator<Employee> itEdit = employees.iterator();
 	JTextArea outputArea;
 	JButton addButton;
 	JButton removeButton;
@@ -93,14 +94,13 @@ public class GUI extends GBFrame {
 		outputArea = addTextArea("", 1, 1, 2, 6);
 		JLabel nameLabel = addLabel("Name", 7,1,1,1);
 		nameField = addTextField(s.getName(), 7,2,1,1);
-		JLabel IDLabel = addLabel("ID", 8,1,1,1);
+		JLabel departmentLabel = addLabel("Department", 8,1,1,1);
 		departmentField = addTextField(s.getDepartment(), 8,2,1,1);
-		JLabel GPALabel = addLabel("GPA", 9,1,1,1);
+		JLabel salaryLabel = addLabel("Salary", 9,1,1,1);
 		salaryField = addIntegerField(s.getSalary(), 9,2,1,1);
 		backEditButton = addButton("Back", 11,1,1,1);
 		editEmployeeButton = addButton("Edit Employee", 11,2,1,1);
 		frm.validate();
-		System.out.println(it.next());
 		updateList();
 	}
 
@@ -132,6 +132,10 @@ public class GUI extends GBFrame {
 			removeMenu();
 			return;
 		} else if(buttonObj == editButton) {
+			if(employees.getHead() == null) {
+				messageBox("Error: No Employees");
+				return;
+			}
 			editMenu();
 			return;
 		}
@@ -176,9 +180,9 @@ public class GUI extends GBFrame {
 				messageBox("Error: Please Enter Name");
 				return;
 			} 
-			it = employees.iterator();
-			while(it.hasNext()) {
-				Employee s = it.next();
+			itEdit = employees.iterator();
+			while(itEdit.hasNext()) {
+				Employee s = itEdit.next();
 				if(s.getName().equals(name)) {
 					editEmployeeMenu(s);
 					return;
@@ -187,7 +191,6 @@ public class GUI extends GBFrame {
 			messageBox("Error: Employee Not Found");
 			return;
 		} else if (buttonObj == editEmployeeButton) {
-			System.out.println(it.next());
 			String name = nameField.getText();
 			String department = departmentField.getText();
 			int salary = salaryField.getNumber();
@@ -202,7 +205,7 @@ public class GUI extends GBFrame {
 				return;
 			} 
 			Employee temp = new Employee(name, department, salary);
-			it.set(temp);
+			itEdit.set(temp);
 			mainMenu();
 			return;
 		}
