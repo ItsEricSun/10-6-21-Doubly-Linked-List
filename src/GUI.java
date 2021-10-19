@@ -13,6 +13,8 @@ public class GUI extends GBFrame {
 	JButton addButton;
 	JButton removeButton;
 	JButton editButton;
+	JButton sortNameButton;
+	JButton sortSalaryButton;
 	JButton addEmployeeButton;
 	JButton removeEmployeeButton;
 	JButton editInfoButton;
@@ -29,6 +31,8 @@ public class GUI extends GBFrame {
 		addButton = addButton("Add Employee", 7,1,1,1);
 		removeButton = addButton("Remove Employee", 8,1,1,1);
 		editButton = addButton("Edit Employee", 9,1,1,1);
+		sortNameButton = addButton("Sort by Name", 10,1,1,1);
+		sortSalaryButton = addButton("Sort by Salary", 11,1,1,1);
 	}
 
 //
@@ -40,6 +44,8 @@ public class GUI extends GBFrame {
 		addButton = addButton("Add Employee", 7,1,1,1);
 		removeButton = addButton("Remove Employee", 8,1,1,1);
 		editButton = addButton("Edit Employee", 9,1,1,1);
+		sortNameButton = addButton("Sort by Name", 10,1,1,1);
+		sortSalaryButton = addButton("Sort by Salary", 11,1,1,1);
 		frm.validate();
 		updateList();
 	}
@@ -103,11 +109,13 @@ public class GUI extends GBFrame {
 		frm.validate();
 		updateList();
 	}
-
+	
 	public GUI() {
-		employees.add(new Employee("e", "math", 20));
+		employees.add(new Employee("e", "math", 2500));
 		employees.add(new Employee("a", "english", 200));
-		employees.add(new Employee("n", "science", 60));
+//		employees.add(new Employee("n", "science", 60));
+//		employees.add(new Employee("b", "english", 2000));
+//		employees.add(new Employee("c", "science", 600));
 		initMainMenu();
 		updateList();
 		
@@ -208,7 +216,66 @@ public class GUI extends GBFrame {
 			itEdit.set(temp);
 			mainMenu();
 			return;
+		} else if (buttonObj == sortNameButton) {
+			if(employees.getHead() == null) {
+				return;
+			} else if(employees.size() == 1) {
+				return;
+			}
+			it = employees.iterator();
+			it.next();
+			for(int i = 1; i < employees.size(); i++) {
+				while(it.hasPrevious()) {
+					it.previous();
+				}
+				for(int j = 0; j < i - 1; j++) {
+					it.next();
+				}
+				Employee key = it.next();
+				Employee temp = it.previous();
+				while(it.hasPrevious() && temp.getName().compareTo(key.getName()) > 0) {
+					it.next();
+					it.set(temp);
+					it.previous();
+					temp = it.previous();
+				}
+				it.next();
+				it.set(key);
+				mainMenu();
+			}
+		} else if (buttonObj == sortSalaryButton) {
+			if(employees.getHead() == null) {
+				return;
+			} else if(employees.size() == 1) {
+				return;
+			}
+			it = employees.iterator();
+			it.next();
+			for(int i = 1; i < employees.size(); i++) {
+				while(it.hasPrevious()) {
+					it.previous();
+				}
+				for(int j = 0; j < i - 1; j++) {
+					it.next();
+				}
+				Employee key = it.next();
+				Employee temp = it.previous();
+				while(it.hasPrevious() && temp.getSalary() > key.getSalary()) {
+					it.next();
+					it.set(temp);
+					it.previous();
+					temp = it.previous();
+				}
+				it.next();
+				it.set(key);
+			}
+
+			
+//			System.out.println(it.next());
+
+			mainMenu();
 		}
+		
 	}
 
 	public void updateList() {
