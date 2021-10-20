@@ -113,9 +113,9 @@ public class GUI extends GBFrame {
 	public GUI() {
 		employees.add(new Employee("e", "math", 2500));
 		employees.add(new Employee("a", "english", 200));
-//		employees.add(new Employee("n", "science", 60));
-//		employees.add(new Employee("b", "english", 2000));
-//		employees.add(new Employee("c", "science", 600));
+		employees.add(new Employee("n", "science", 60));
+		employees.add(new Employee("b", "english", 2000));
+		employees.add(new Employee("c", "science", 600));
 		initMainMenu();
 		updateList();
 		
@@ -222,8 +222,87 @@ public class GUI extends GBFrame {
 			} else if(employees.size() == 1) {
 				return;
 			}
+			
 			it = employees.iterator();
 			it.next();
+			
+//			Employee key = it.next();
+//			Employee temp = null;
+//			while(it.next() != null) {
+//				it.previous();
+//				temp = it.next();
+//				if(temp.getSalary() < key.getSalary()) {
+//					
+//				}
+//				
+//			}
+			
+			for(int i = 1; i < employees.size(); i++) {
+				while(it.hasPrevious()) {
+					it.previous();
+				}
+				for(int j = 0; j < i - 1; j++) {
+					it.next();
+				}
+				Employee key = it.next();
+				Employee temp = it.previous();
+//				it.next();
+				while(it.hasPrevious() && temp.getName().compareTo(key.getName()) > 0) {
+					it.next();
+					it.set(temp);
+					it.previous();
+//					if(it.hasPrevious())
+					temp = it.previous();
+//					it.set(temp);
+//					it.previous();
+//					temp = it.previous();
+				}
+//				if(temp.getSalary() < key.getSalary()) it.next();
+				it.next();
+//				it.previous();
+				it.set(key);
+			}
+			
+			
+			it = employees.iterator();
+			Employee key = it.next();
+			while(it.hasNext()) {
+				Employee temp =  it.next();
+				if(temp.getName().compareTo(key.getName()) < 0) {
+					it.previous();
+					it.set(temp);
+					it.next();
+				} else {
+					mainMenu();
+					return;
+				}
+				
+				
+			}
+			it.set(key);
+			mainMenu();
+			
+			/*
+			if(employees.getHead() == null) {
+				return;
+			} else if(employees.size() == 1) {
+				return;
+			}
+			
+			it = employees.iterator();
+			it.next();
+			
+//			Employee key = it.next();
+//			Employee temp = null;
+//			while(it.next() != null) {
+//				it.previous();
+//				temp = it.next();
+//				if(temp.getSalary() < key.getSalary()) {
+//					
+//				}
+//				
+//			}
+			
 			for(int i = 1; i < employees.size(); i++) {
 				while(it.hasPrevious()) {
 					it.previous();
@@ -241,16 +320,71 @@ public class GUI extends GBFrame {
 				}
 				it.next();
 				it.set(key);
-				mainMenu();
 			}
+			
+			it = employees.iterator();
+			Employee key = it.next();
+			while(it.hasNext()) {
+				Employee temp =  it.next();
+				if(temp.getName().compareTo(key.getName()) < 0) {
+					it.previous();
+					it.set(temp);
+					it.next();
+				} else {
+					mainMenu();
+					return;
+				}
+			}
+			it.set(key);
+			mainMenu();
+//			if(employees.getHead() == null) {
+//				return;
+//			} else if(employees.size() == 1) {
+//				return;
+//			}
+//			it = employees.iterator();
+//			it.next();
+//			for(int i = 1; i < employees.size(); i++) {
+//				while(it.hasPrevious()) {
+//					it.previous();
+//				}
+//				for(int j = 0; j < i - 1; j++) {
+//					it.next();
+//				}
+//				Employee key = it.next();
+//				Employee temp = it.previous();
+//				while(it.hasPrevious() && temp.getName().compareTo(key.getName()) > 0) {
+//					it.next();
+//					it.set(temp);
+//					it.previous();
+//					temp = it.previous();
+//				}
+//				it.next();
+//				it.set(key);
+//				mainMenu();
+//			}
+ */
 		} else if (buttonObj == sortSalaryButton) {
 			if(employees.getHead() == null) {
 				return;
 			} else if(employees.size() == 1) {
 				return;
 			}
+			
 			it = employees.iterator();
 			it.next();
+			
+//			Employee key = it.next();
+//			Employee temp = null;
+//			while(it.next() != null) {
+//				it.previous();
+//				temp = it.next();
+//				if(temp.getSalary() < key.getSalary()) {
+//					
+//				}
+//				
+//			}
+			
 			for(int i = 1; i < employees.size(); i++) {
 				while(it.hasPrevious()) {
 					it.previous();
@@ -260,15 +394,41 @@ public class GUI extends GBFrame {
 				}
 				Employee key = it.next();
 				Employee temp = it.previous();
+//				it.next();
 				while(it.hasPrevious() && temp.getSalary() > key.getSalary()) {
 					it.next();
 					it.set(temp);
 					it.previous();
+//					if(it.hasPrevious())
 					temp = it.previous();
+//					it.set(temp);
+//					it.previous();
+//					temp = it.previous();
 				}
+//				if(temp.getSalary() < key.getSalary()) it.next();
 				it.next();
+//				it.previous();
 				it.set(key);
 			}
+			
+			
+			it = employees.iterator();
+			Employee key = it.next();
+			while(it.hasNext()) {
+				Employee temp =  it.next();
+				if(key.getSalary() > temp.getSalary()) {
+					it.previous();
+					it.set(temp);
+					it.next();
+				} else {
+					mainMenu();
+					return;
+				}
+				
+				
+			}
+			it.set(key);
+//			
 
 			/*
 			 
