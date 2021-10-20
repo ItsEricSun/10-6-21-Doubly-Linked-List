@@ -270,7 +270,42 @@ public class GUI extends GBFrame {
 				it.set(key);
 			}
 
-			
+			/*
+			 
+			 	public void swapData(LinkNode first, LinkNode second)
+	{
+		int value = first.data;
+		first.data = second.data;
+		second.data = value;
+	}
+	// Sort elements using insertion sort
+	public void insertionSort()
+	{
+      	// Get first node
+		LinkNode front = this.head;
+		LinkNode back = null;
+		while (front != null)
+		{
+          	// Get next node
+			back = front.next;
+          	// Update node value when consecutive nodes are not sort
+			while (back != null && back.prev != null && 
+                  back.data < back.prev.data)
+			{
+				
+					// Modified node data
+					swapData(back, back.prev);
+                    // Visit to previous node
+					back = back.prev;
+				
+			}
+            // Visit to next node
+			front = front.next;
+		}
+	}
+			 
+			 
+			 */
 //			System.out.println(it.next());
 
 			mainMenu();
