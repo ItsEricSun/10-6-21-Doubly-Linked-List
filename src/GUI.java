@@ -35,7 +35,6 @@ public class GUI extends GBFrame {
 		sortSalaryButton = addButton("Sort by Salary", 11,1,1,1);
 	}
 
-//
 	public void mainMenu() {
 		frm.getContentPane().removeAll();
 		frm.setSize(250, 750);
@@ -49,7 +48,7 @@ public class GUI extends GBFrame {
 		frm.validate();
 		updateList();
 	}
-//
+
 	public void addMenu() {
 		frm.getContentPane().removeAll();
 		frm.setSize(250, 750);
@@ -66,7 +65,7 @@ public class GUI extends GBFrame {
 		frm.validate();
 		updateList();
 	}
-//
+
 	public void removeMenu() {
 		frm.getContentPane().removeAll();
 		frm.setSize(250, 750);
@@ -79,7 +78,7 @@ public class GUI extends GBFrame {
 		frm.validate();
 		updateList();
 	}
-//
+
 	public void editMenu() {
 		frm.getContentPane().removeAll();
 		frm.setSize(250, 750);
@@ -92,7 +91,7 @@ public class GUI extends GBFrame {
 		frm.validate();
 		updateList();
 	}
-//
+
 	public void editEmployeeMenu(Employee s) {
 		frm.getContentPane().removeAll();
 		frm.setSize(250, 750);
@@ -109,7 +108,7 @@ public class GUI extends GBFrame {
 		frm.validate();
 		updateList();
 	}
-	
+
 	public GUI() {
 		employees.add(new Employee("e", "math", 2500));
 		employees.add(new Employee("a", "english", 200));
@@ -118,7 +117,7 @@ public class GUI extends GBFrame {
 		employees.add(new Employee("c", "science", 600));
 		initMainMenu();
 		updateList();
-		
+
 	}
 
 	public void buttonClicked(JButton buttonObj){
@@ -222,87 +221,8 @@ public class GUI extends GBFrame {
 			} else if(employees.size() == 1) {
 				return;
 			}
-			
 			it = employees.iterator();
 			it.next();
-			
-//			Employee key = it.next();
-//			Employee temp = null;
-//			while(it.next() != null) {
-//				it.previous();;
-//				temp = it.next();
-//				if(temp.getSalary() < key.getSalary()) {
-//					
-//				}
-//				
-//			}
-			
-			for(int i = 1; i < employees.size(); i++) {
-				while(it.hasPrevious()) {
-					it.previous();
-				}
-				for(int j = 0; j < i - 1; j++) {
-					it.next();
-				}
-				Employee key = it.next();
-				Employee temp = it.previous();
-//				it.next();
-				while(it.hasPrevious() && temp.getName().compareTo(key.getName()) > 0) {
-					it.next();
-					it.set(temp);
-					it.previous();
-//					if(it.hasPrevious())
-					temp = it.previous();
-//					it.set(temp);
-//					it.previous();
-//					temp = it.previous();
-				}
-//				if(temp.getSalary() < key.getSalary()) it.next();
-				it.next();
-//				it.previous();
-				it.set(key);
-			}
-			
-			
-			it = employees.iterator();
-			Employee key = it.next();
-			while(it.hasNext()) {
-				Employee temp =  it.next();
-				if(temp.getName().compareTo(key.getName()) < 0) {
-					it.previous();
-					it.set(temp);
-					it.next();
-				} else {
-					mainMenu();
-					return;
-				}
-				
-				
-			}
-			it.set(key);
-			mainMenu();
-			
-			/*
-			if(employees.getHead() == null) {
-				return;
-			} else if(employees.size() == 1) {
-				return;
-			}
-			
-			it = employees.iterator();
-			it.next();
-			
-//			Employee key = it.next();
-//			Employee temp = null;
-//			while(it.next() != null) {
-//				it.previous();
-//				temp = it.next();
-//				if(temp.getSalary() < key.getSalary()) {
-//					
-//				}
-//				
-//			}
-			
 			for(int i = 1; i < employees.size(); i++) {
 				while(it.hasPrevious()) {
 					it.previous();
@@ -321,7 +241,6 @@ public class GUI extends GBFrame {
 				it.next();
 				it.set(key);
 			}
-			
 			it = employees.iterator();
 			Employee key = it.next();
 			while(it.hasNext()) {
@@ -331,60 +250,22 @@ public class GUI extends GBFrame {
 					it.set(temp);
 					it.next();
 				} else {
+					it.previous();
+					it.set(key);
 					mainMenu();
 					return;
 				}
 			}
 			it.set(key);
 			mainMenu();
-//			if(employees.getHead() == null) {
-//				return;
-//			} else if(employees.size() == 1) {
-//				return;
-//			}
-//			it = employees.iterator();
-//			it.next();
-//			for(int i = 1; i < employees.size(); i++) {
-//				while(it.hasPrevious()) {
-//					it.previous();
-//				}
-//				for(int j = 0; j < i - 1; j++) {
-//					it.next();
-//				}
-//				Employee key = it.next();
-//				Employee temp = it.previous();
-//				while(it.hasPrevious() && temp.getName().compareTo(key.getName()) > 0) {
-//					it.next();
-//					it.set(temp);
-//					it.previous();
-//					temp = it.previous();
-//				}
-//				it.next();
-//				it.set(key);
-//				mainMenu();
-//			}
- */
 		} else if (buttonObj == sortSalaryButton) {
 			if(employees.getHead() == null) {
 				return;
 			} else if(employees.size() == 1) {
 				return;
 			}
-			
 			it = employees.iterator();
 			it.next();
-			
-//			Employee key = it.next();
-//			Employee temp = null;
-//			while(it.next() != null) {
-//				it.previous();
-//				temp = it.next();
-//				if(temp.getSalary() < key.getSalary()) {
-//					
-//				}
-//				
-//			}
-			
 			for(int i = 1; i < employees.size(); i++) {
 				while(it.hasPrevious()) {
 					it.previous();
@@ -394,24 +275,15 @@ public class GUI extends GBFrame {
 				}
 				Employee key = it.next();
 				Employee temp = it.previous();
-//				it.next();
 				while(it.hasPrevious() && temp.getSalary() > key.getSalary()) {
 					it.next();
 					it.set(temp);
 					it.previous();
-//					if(it.hasPrevious())
 					temp = it.previous();
-//					it.set(temp);
-//					it.previous();
-//					temp = it.previous();
 				}
-//				if(temp.getSalary() < key.getSalary()) it.next();
 				it.next();
-//				it.previous();
 				it.set(key);
 			}
-			
-			
 			it = employees.iterator();
 			Employee key = it.next();
 			while(it.hasNext()) {
@@ -421,56 +293,15 @@ public class GUI extends GBFrame {
 					it.set(temp);
 					it.next();
 				} else {
+					it.previous();
+					it.set(key);
 					mainMenu();
 					return;
 				}
-				
-				
 			}
 			it.set(key);
-//			
-
-			/*
-			 
-			 	public void swapData(LinkNode first, LinkNode second)
-	{
-		int value = first.data;
-		first.data = second.data;
-		second.data = value;
-	}
-	// Sort elements using insertion sort
-	public void insertionSort()
-	{
-      	// Get first node
-		LinkNode front = this.head;
-		LinkNode back = null;
-		while (front != null)
-		{
-          	// Get next node
-			back = front.next;
-          	// Update node value when consecutive nodes are not sort
-			while (back != null && back.prev != null && 
-                  back.data < back.prev.data)
-			{
-				
-					// Modified node data
-					swapData(back, back.prev);
-                    // Visit to previous node
-					back = back.prev;
-				
-			}
-            // Visit to next node
-			front = front.next;
-		}
-	}
-			 
-			 
-			 */
-//			System.out.println(it.next());
-
 			mainMenu();
 		}
-		
 	}
 
 	public void updateList() {
@@ -489,6 +320,5 @@ public class GUI extends GBFrame {
 		frm.setTitle("Employees");
 		frm.setSize(250, 750);
 		frm.setVisible(true);
-		
 	}
 }
