@@ -229,7 +229,7 @@ public class GUI extends GBFrame {
 //			Employee key = it.next();
 //			Employee temp = null;
 //			while(it.next() != null) {
-//				it.previous();
+//				it.previous();;
 //				temp = it.next();
 //				if(temp.getSalary() < key.getSalary()) {
 //					
