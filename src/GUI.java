@@ -110,11 +110,11 @@ public class GUI extends GBFrame {
 	}
 
 	public GUI() {
-		employees.add(new Employee("e", "math", 2500));
-		employees.add(new Employee("a", "english", 200));
-		employees.add(new Employee("n", "science", 60));
-		employees.add(new Employee("b", "english", 2000));
-		employees.add(new Employee("c", "science", 600));
+//		employees.add(new Employee("e", "math", 2500));
+//		employees.add(new Employee("a", "english", 200));
+//		employees.add(new Employee("n", "science", 60));
+//		employees.add(new Employee("b", "english", 2000));
+//		employees.add(new Employee("c", "science", 600));
 		initMainMenu();
 		updateList();
 
