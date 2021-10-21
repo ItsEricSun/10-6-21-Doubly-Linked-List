@@ -164,7 +164,6 @@ public class DoublyLinkedList<E> implements Iterable<E>{
 			return cur.prev != null;
 		}
 
-		@Override
 		public E previous() {
 			if(!hasPrevious()) {
 				throw new NoSuchElementException();
@@ -173,18 +172,14 @@ public class DoublyLinkedList<E> implements Iterable<E>{
 			return cur.data;
 		}
 		
-		@Override
 		public void set(E e) {
 			if(cur == null) {
 				throw new NoSuchElementException();
 			}
 			cur.data = e;
-			
 		}
 
-		@Override
 		public void remove() {
-			// TODO Auto-generated method stub
 			if(cur == null) {
 				throw new NoSuchElementException();
 			}
@@ -206,7 +201,6 @@ public class DoublyLinkedList<E> implements Iterable<E>{
 			}
 		}
 
-		@Override
 		public void add(E e) {
 			Node<E> new_node = new Node<E>(e);
 			new_node.next = null;
@@ -227,19 +221,13 @@ public class DoublyLinkedList<E> implements Iterable<E>{
 			new_node.prev = cur.prev;
 			cur.prev.next = new_node;
 			cur.prev = cur.prev.next;
-			// TODO Auto-generated method stub
-			
 		}
 
-		@Override
 		public int nextIndex() {
-			// TODO Auto-generated method stub
 			return 0;
 		}
 
-		@Override
 		public int previousIndex() {
-			// TODO Auto-generated method stub
 			return 0;
 		}
 		
